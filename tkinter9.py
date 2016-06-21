@@ -1,5 +1,6 @@
 #Learned how to make a menu, & drop down menus :O :O :O 
 #Learned how to make a tool bar
+#Learned how to make a status bar
 from Tkinter import * 
 
 
@@ -35,4 +36,10 @@ printButton = Button(toolbar, text="Print", command=doNothing)
 printButton.pack(side=LEFT, padx=2, pady=2)
 
 toolbar.pack(side=TOP, fill=X)
+
+######## STATUS BAR #######
+
+#bd stand for border
+status = Label(root, text="Preparing to do nothing...", bd=1, relief=SUNKEN, anchor=W) 
+status.pack(side=BOTTOM, fill=X)
 root.mainloop() 
