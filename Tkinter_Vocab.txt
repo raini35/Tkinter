@@ -1,0 +1,57 @@
+from Tkinter import * 
+
+root = Tk() 
+
+variable_name = Label(root, text="") 
+  Label(root, text="", bg="", fg="")
+  Label(root, text="", bd=1, relief=SUNKEN, anchor=W) #Creates a status bar 
+  Label(root, image=photo) #Uploads photo onto root
+
+.pack()
+  .pack(side=BOTTOM)
+  .pack(side=LEFT)
+  .pack(fill=X) #fill=X means that it will fill the widget as wide as the parent
+  .pack(fill=LEFT, fill=Y) #fill=X means that it will fill the widget as high as the parent
+  
+root.mainloop 
+
+variable_name = Frame(root) 
+
+variable_name = Button(location, text="", fg="") #fg = foreground color
+
+def function_name(argument): #header for defining a function 
+
+.bind("<Button-2>", function) #Button-2 is right click? decides which click triggers the event 
+  .bind("<Button-1>", function)
+  .bind("<Button-3>", function) 
+  
+class Name_of_Class: #header & instation of a class in python 
+  def __init__(self, master):
+  
+drop_down_menu = Menu(root) #how to create a drop down menu 
+
+root.config(menu=Name_of_Menu) 
+
+sub_menu=Menu(Name_of_Menu) #The menu inside the menu 
+
+drop_down_menu.add_cascade(label="", menu="") #Create a button on menu 
+
+sub_menu.add_command(label="Name of Button", command=function) #Create a button inside the sub menu 
+
+sub_menu.add_separation() #adds a line in between the menu buttons 
+
+tkMessageBox.showinfo("Window-Title", "Text") #creates a message box 
+
+tkMessageBox.askquestion("Window-Title", "Text") #gets a Yes or a No input from the user 
+
+variable_name = Canvas(root, width=200, height=100) #creates a canvas for shapes 
+
+variable_name = canvas_name.create_line(0, 0, 200, 50) #creates a line 
+  .create_line(0, 100, 200, 50, fill="red") #color of line is red
+  .create_rectangle(25, 25, 130, 60, fill="green") #creates a rectangle
+  
+canvas_name.delete(redLine) #deletes line
+  .delete(ALL) #deletes all shapes 
+
+variable_name = PhotoImage(file="filename.gif") #opens image file, but does not work for anythign but gifs or ppms? 
+  
