@@ -35,6 +35,9 @@ class SeaofBTCapp(tk.Tk):
 		frame = self.frames[cont]
 		frame.tkraise() 
 		
+def qf(param):
+	print(param)
+	
 class StartPage(tk.Frame):
 	
 	def __init__(self, parent, controller): 
@@ -42,6 +45,11 @@ class StartPage(tk.Frame):
 		label = tk.Label(self, text="Start Page", font=LARGE_FONT)
 		label.pack(pady=10, padx=10) #When you have 1 or 2 things to add to the window just use pack
 		
-
+		#lambda creates a temporary variable so that you can pass arguments for functions 
+		#that you use for command (See below)
+		button1 = tk.Button(self, text="Visit Page1", 
+							command=lambda: qf("See this worked!"))
+		button1.pack()
+		
 app = SeaofBTCapp()
 app.mainloop()
