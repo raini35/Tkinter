@@ -21,12 +21,15 @@ class SeaofBTCapp(tk.Tk):
 		#{} for dictionaries 
 		self.frames = {}
 		
-		frame = StartPage(container, self)
+		#this lets you go through the different pages
+		for F in (StartPage, PageOne, PageTwo): 
+			
+			frame = F(container, self)
 
-		self.frames[StartPage] = frame 
+			self.frames[F] = frame 
 		
-		#sticky paramater is basically alignment (nsew = north south east west) 
-		frame.grid(row=0, column=0, sticky="nsew")		
+			#sticky paramater is basically alignment (nsew = north south east west) 
+			frame.grid(row=0, column=0, sticky="nsew")		
 		
 		self.show_frame(StartPage)
 		
@@ -48,8 +51,44 @@ class StartPage(tk.Frame):
 		#lambda creates a temporary variable so that you can pass arguments for functions 
 		#that you use for command (See below)
 		button1 = tk.Button(self, text="Visit Page1", 
-							command=lambda: qf("See this worked!"))
+							command=lambda: controller.show_frame(PageOne))
 		button1.pack()
+		
+		button2 = tk.Button(self, text="Visit Page2", 
+							command=lambda: controller.show_frame(PageTwo))
+		button2.pack()
+
+class PageOne(tk.Frame): 
+	
+	def __init__(self, parent, controller): 
+		tk.Frame.__init__(self, parent)
+		label = tk.Label(self, text="Page One", font=LARGE_FONT)
+		label.pack(pady=10, padx=10)
+		
+		button1 = tk.Button(self, text="Back to Home", 
+							command=lambda: controller.show_frame(StartPage))
+		button1.pack()
+		
+		button2 = tk.Button(self, text="Page Two", 
+							command=lambda: controller.show_frame(PageTwo))
+		button2.pack()
+		
+		
+class PageTwo(tk.Frame): 
+	
+	def __init__(self, parent, controller): 
+		tk.Frame.__init__(self, parent)
+		label = tk.Label(self, text="Page One", font=LARGE_FONT)
+		label.pack(pady=10, padx=10)
+		
+		button1 = tk.Button(self, text="Back to Home", 
+							command=lambda: controller.show_frame(StartPage))
+		button1.pack()
+		
+		button2 = tk.Button(self, text="Page One", 
+							command=lambda: controller.show_frame(PageOne))
+		button2.pack()
+
 		
 app = SeaofBTCapp()
 app.mainloop()
