@@ -1,3 +1,9 @@
+import matplotlib
+matplotlib.use("TkAgg")
+
+from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg, NavigationToolbar2TkAgg
+from matplotlib.figure import Figure
+
 import Tkinter as tk 
 import ttk
 
@@ -12,12 +18,11 @@ class SeaofBTCapp(tk.Tk):
 		
 		tk.Tk.__init__(self, *args, **kwargs)
 		
-		#self.tk.call('wm', 'iconbitmap', "/Users/rfg40/Documents/client.x")
-		#self.iconbitmap(default='client.ico')		
-		self.tk.call('wm', 'iconbitmap', self, 'client.xbm')
+		#self.tk.call('wm', 'iconbitmap', self, 'client.xbm')
+		
+		tk.Tk.wm_title(self, "Sea of BTC Client")
 		
 		container = tk.Frame(self) 
-		#Two ways to place items pack and grid
 		container.pack(side="top", fill="both", expand=True)
 		container.grid_rowconfigure(0, weight = 1)
 		container.grid_columnconfigure(0, weight = 1)
@@ -26,7 +31,7 @@ class SeaofBTCapp(tk.Tk):
 		self.frames = {}
 		
 		#this lets you go through the different pages
-		for F in (StartPage, PageOne, PageTwo): 
+		for F in (StartPage, PageOne, PageTwo, PageThree): 
 			
 			frame = F(container, self)
 
@@ -61,6 +66,10 @@ class StartPage(tk.Frame):
 		button2 = ttk.Button(self, text="Visit Page2", 
 							command=lambda: controller.show_frame(PageTwo))
 		button2.pack()
+		
+		button3 = ttk.Button(self, text="Graph Page", 
+							command=lambda: controller.show_frame(PageThree))
+		button3.pack()
 
 class PageOne(tk.Frame): 
 	
@@ -82,7 +91,7 @@ class PageTwo(tk.Frame):
 	
 	def __init__(self, parent, controller): 
 		tk.Frame.__init__(self, parent)
-		label = tk.Label(self, text="Page One", font=LARGE_FONT)
+		label = tk.Label(self, text="Page Two", font=LARGE_FONT)
 		label.pack(pady=10, padx=10)
 		
 		button1 = ttk.Button(self, text="Back to Home", 
@@ -93,6 +102,29 @@ class PageTwo(tk.Frame):
 							command=lambda: controller.show_frame(PageOne))
 		button2.pack()
 
+class PageThree(tk.Frame): 
+	
+	def __init__(self, parent, controller): 
+		tk.Frame.__init__(self, parent)
+		label = tk.Label(self, text="Graph Page", font=LARGE_FONT)
+		label.pack(pady=10, padx=10)
+		
+		button1 = ttk.Button(self, text="Back to Home", 
+							command=lambda: controller.show_frame(StartPage))
+		button1.pack()
+		
+		f = Figure(figsize=(5,5), dpi=100)
+		a = f.add_subplot(111)
+		a.plot([1,2,3,4,5,6,7,8],[5,6,1,3,4,5,3,4])
+	
+		canvas = FigureCanvasTkAgg(f, self)
+		canvas.show()
+			
+	
+		toolbar = NavigationToolbar2TkAgg(canvas, self)
+		toolbar.update()
+		canvas._tkcanvas.pack(side=tk.TOP, fill=tk.BOTH, expand = True)
+		canvas.get_tk_widget().pack(side=tk.TOP, fill=tk.BOTH, expand = True)
 		
 app = SeaofBTCapp()
 app.mainloop()
